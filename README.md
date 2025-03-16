@@ -6,7 +6,7 @@ npm i react-router
 
 npm i react-router-dom
 
-npm install bootstrap
+npm i bootstrap
 
 backend:
 
