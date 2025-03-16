@@ -1,6 +1,13 @@
-frontend
+frontend:
+
 npm create vite@latest
+
 npm i react-router
 
-backend
+npm i react-router-dom
+
+npm i bootstrap
+
+backend:
+
 npm install express cors
