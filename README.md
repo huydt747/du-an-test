@@ -1,8 +1,9 @@
-frontend
+frontend:
 
 npm create vite@latest
+
 npm i react-router
 
-backend
+backend:
 
 npm install express cors
