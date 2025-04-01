@@ -8,7 +8,7 @@ const App=()=>{
   return(
       <>
       <Header />
-      <NavBar/>
+      {/* <NavBar/> */}
       <div className="wrapper">
         <Outlet />
       </div>
