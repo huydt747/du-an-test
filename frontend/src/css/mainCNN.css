@@ -35,9 +35,6 @@ main {
 	cursor: pointer;
   }
   
-  main #div1 span:nth-child(odd):hover {
-	border-bottom: 1px black solid;
-  }
   
   main #news1 {
 	display: grid;

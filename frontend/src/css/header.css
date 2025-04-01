@@ -15,7 +15,6 @@
     width: 90%;
     height: 50px;
     margin: 0 auto;
-    border-bottom: 2px solid #000000;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -42,22 +41,30 @@
     display: inline-block;
     cursor: pointer;
 }
+.more {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
 .more-menu {
     width: 180px;
-    min-width: 180px;
-    height: auto;
     display: none;
     position: absolute;
     top: 100%;
     left: -20px;
+    top: 35px;
     background: white;
     border: 1px solid #ccc;
     list-style: none;
-    padding: 10px;
-    width: 150px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px 10px 10px; /* Thêm padding-top */
+    margin-top: -10px; /* Bù lại */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 1001; /* Ưu tiên hiển thị */
 }
-.more:hover .more-menu {
+
+.more:hover .more-menu,
+.more-menu:hover { /* Quan trọng: Giữ menu mở khi hover vào chính nó */
     display: block;
 }
 .more-menu li {
