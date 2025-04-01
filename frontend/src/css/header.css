@@ -1,12 +1,14 @@
 .header {
-    width: 100%; 
+    width: 100%;
     margin: 0 auto;
-    position: fixed; 
-    color: rgb(0, 0, 0);
-    padding: 15px;
-    text-align: center;
-    z-index: 1000;
+    position: fixed;
     top: 0;
+    left: 0;
+    background: white; /* Thêm nền trắng */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Đổ bóng cho đẹp */
+    z-index: 1000;
+    padding: 15px 0; /* Điều chỉnh padding */
+    box-sizing: border-box; /* Quan trọng! */
 }
 
 .header .list-menu{
