@@ -1,0 +1,8 @@
+@keyframes colorChangeAnim {
+	0% {
+	  background: linear-gradient(20deg, rgb(235, 235, 235), rgb(160, 160, 160));
+	}
+	100% {
+	  background: linear-gradient(20deg, rgb(160, 160, 160), rgb(235, 235, 235));
+	}
+  }
