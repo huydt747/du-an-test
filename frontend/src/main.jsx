@@ -4,7 +4,9 @@ import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom"
 import './index.css'
 import App from './App.jsx'
 import TrangChu from "./pages/TrangChu.jsx";
-import Business from "./pages/business.jsx";
+import America from "./pages/America.jsx";
+import Health from "./pages/Health.jsx";
+import Us from "./pages/Us.jsx";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 
@@ -20,8 +22,16 @@ const router = createBrowserRouter([
         element: <TrangChu/>,
       },
       {
-        path:"/business",
-        element: <Business/>,
+        path:"/america",
+        element: <America/>,
+      },
+      {
+        path:"/health",
+        element: <Health/>,
+      },
+      {
+        path:"/us",
+        element: <Us/>,
       },
     ],
   },
