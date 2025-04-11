@@ -5,6 +5,7 @@ import './index.css'
 import App from './App.jsx'
 import TrangChu from "./pages/TrangChu.jsx";
 import Business from "./pages/business.jsx";
+import World from "./pages/World.jsx"
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path:"/business",
         element: <Business/>,
+      },
+      {
+        path:"/world",
+        element: <World/>,
       },
     ],
   },
