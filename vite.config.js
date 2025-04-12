@@ -8,6 +8,7 @@ export default defineConfig({
     port: 10000
   },
   preview: {
-    port: 10000
+    port: 10000,
+    host: 'https://du-an-test-1mta.onrender.com',
   }
 });
