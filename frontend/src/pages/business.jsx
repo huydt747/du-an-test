@@ -11,7 +11,7 @@ function Business() {
                     </div>
                     <div className="stock-market">
                         <div className="name-stock">
-                            <a href="">DOW</a>
+                            <a href="">DOWS</a>
                             <a href="">S&P 500</a>
                             <a href="">NASDAQ</a>
                         </div>
