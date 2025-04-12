@@ -30,7 +30,6 @@
   display: flex;
 }
 .SArticle ul li a:hover {
-  text-decoration: underline;
   border: 0;
   width: -moz-fit-content;
   width: fit-content;
@@ -65,9 +64,6 @@ main #div1 span:nth-child(even) {
 }
 main #div1 span:nth-child(odd) {
   cursor: pointer;
-}
-main #div1 span:nth-child(odd):hover {
-  border-bottom: 1px black solid;
 }
 
 main #news1 {
@@ -437,9 +433,6 @@ main #news7 article div {
 a {
   text-decoration: none;
   color: inherit;
-}
-a:hover {
-  border-bottom: 1px black solid;
 }
 
 body {

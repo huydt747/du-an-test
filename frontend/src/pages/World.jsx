@@ -1,6 +1,5 @@
 import React from "react";
 import "../css/world.css";
-import HeaderWorld from "../components/headerworld";
 const newsData = [
   {
     image: "https://media.cnn.com/api/v1/images/stellar/prod/2025-02-07t155818z-2143016801-rc2rpca3tmbv-rtrmadp-3-usa-israel.JPG?c=original",
@@ -227,7 +226,6 @@ const latestStories = [
 function World() {
   return (
     <div className="world">
-      <HeaderWorld />
       <header>
         <h1>World</h1>
       </header>

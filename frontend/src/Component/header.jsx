@@ -11,7 +11,7 @@ function Header(){
                     <a href="/us">US</a>
                     <a href="/world">World</a>
                     <a href="">Politics</a>
-                    <a href="">Business</a>
+                    <a href="/business">Business</a>
                     <a href="/health">Health</a>
                     <a href="">Entertainment</a>
                     <a href="">Style</a>

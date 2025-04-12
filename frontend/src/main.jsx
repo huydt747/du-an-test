@@ -2,14 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import './index.css'
-import App from './App.jsx'
-import TrangChu from "./pages/TrangChu.jsx";
-import Business from "./pages/business.jsx";
-import World from "./pages/World.jsx"
-import America from "./pages/America.jsx";
-import Health from "./pages/Health.jsx";
-import Us from "./pages/Us.jsx";
-
+import App from './App'
+import TrangChu from "./pages/TrangChu";
+import America from "./pages/America";
+import Health from "./pages/Health";
+import Us from "./pages/Us";
+import Business from "./pages/Business";
+import World from "./pages/World";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 
@@ -35,6 +34,10 @@ const router = createBrowserRouter([
       {
         path:"/us",
         element: <Us/>,
+      },
+      {
+        path:"/business",
+        element: <Business/>,
       },
       {
         path:"/world",

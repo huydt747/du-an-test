@@ -27,9 +27,6 @@ main #div1 {
 	}
 	& span:nth-child(odd) {
 		cursor: pointer;
-		&:hover {
-			border-bottom: 1px black solid;
-		}
 	}
 }
 
@@ -389,7 +386,6 @@ main #news7 {
 			}
 			& a:hover {
 				border-bottom: none;
-				text-decoration: underline;
 			}
 		}
 	}
