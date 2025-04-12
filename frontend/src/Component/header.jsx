@@ -49,7 +49,7 @@ function Header(){
                         <a href=""><img src="https://icons.iconarchive.com/icons/iconoir-team/iconoir/72/search-icon.png" alt="" /></a>
                     </div>
                     <div id="login">
-                        <a href="">Sign in</a>
+                        <a href="/sign-in">Sign in</a>
                     </div>
                     
                 </div>

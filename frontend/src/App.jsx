@@ -1,18 +1,20 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Component/header";
 import Footer from "./Component/footer";
 
-const App=()=>{
-  return(
-      <>
+const App = () => {
+  const location = useLocation();
+  const isSignInPage = location.pathname === "/sign-in";
+
+  return (
+    <>
       <Header />
       <div className="wrapper">
         <Outlet />
       </div>
-      <Footer/>
+      {!isSignInPage && <Footer />}
+    </>
+  );
+};
 
-      </>
-  )
-}  
-
-export default App
+export default App;

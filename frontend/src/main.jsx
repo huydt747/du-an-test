@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import './index.css'
 import App from './App'
 import TrangChu from "./pages/TrangChu";
@@ -9,6 +9,7 @@ import Health from "./pages/Health";
 import Us from "./pages/Us";
 import Business from "./pages/Business";
 import World from "./pages/World";
+import Signin from "./pages/signin";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path:"/",
         element: <TrangChu/>,
+      },
+      {
+        path:"/sign-in",
+        element: <Signin/>,
       },
       {
         path:"/america",
