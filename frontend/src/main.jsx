@@ -10,6 +10,8 @@ import Us from "./pages/Us";
 import Business from "./pages/Business";
 import World from "./pages/World";
 import Signin from "./pages/signin";
+import ProfilePage from "./pages/profile";
+import NewsletterSubscriptions from "./pages/subscription";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 
@@ -48,6 +50,14 @@ const router = createBrowserRouter([
         path:"/world",
         element: <World/>,
       },
+      {
+        path:"/account/settings",
+        element: <ProfilePage/>,
+      },
+      {
+        path:"/newsletters",
+        element: <NewsletterSubscriptions/>,
+      }
     ],
   },
 ]);
