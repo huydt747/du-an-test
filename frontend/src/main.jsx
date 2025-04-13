@@ -6,6 +6,10 @@ import App from './App.jsx'
 import TrangChu from "./pages/TrangChu.jsx";
 import Business from "./pages/business.jsx";
 import Signin from "./pages/signin.jsx";
+import Tech from "./pages/tech.jsx";
+import Media from "./pages/media.jsx";
+import Calculators from "./pages/calculators.jsx";
+import Videos from "./pages/videos.jsx";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 
@@ -27,6 +31,22 @@ const router = createBrowserRouter([
       {
         path:"/signin",
         element: <Signin/>,
+      },
+      {
+        path:"/tech",
+        element: <Tech/>,
+      },
+      {
+        path:"/media",
+        element: <Media/>,
+      },
+      {
+        path:"/calculators",
+        element: <Calculators/>,
+      },
+      {
+        path:"/videos",
+        element: <Videos/>,
       },
     ],
   },

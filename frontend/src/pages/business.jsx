@@ -3,6 +3,13 @@ import "../css/business.css";
 function Business() {
     return(
         <div className="business">
+            <div className="list-business">
+                <a href="/business">Business</a>
+                <a href="/tech">Tech</a>
+                <a href="/media">Media</a>
+                <a href="/calculators">Calculators</a>
+                <a href="/videos">Videos</a>
+            </div>
             <div className="markets">
                 <div id="markets">
                     <div className="title">
