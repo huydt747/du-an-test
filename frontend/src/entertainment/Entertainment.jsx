@@ -1,4 +1,4 @@
-import '../css/Entertainment.css'
+import './Entertainment.css'
 
 function Entertainment (){
     return(

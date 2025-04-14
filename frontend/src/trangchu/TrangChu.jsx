@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/home.scss";
+import "./home.scss";
 
 function TrangChu() {
   return (

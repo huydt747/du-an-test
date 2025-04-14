@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/articles.css';
+import './articles.css';
 
 // Component cho Layout Bài Viết
 const ArticleLayout = ({ mainContent, sidebarContent }) => {

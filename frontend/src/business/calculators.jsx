@@ -1,5 +1,5 @@
 
-import "../css/calculators.css";
+import "./calculators.css";
 
 function Calculators() {
     return(

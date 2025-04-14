@@ -1,5 +1,5 @@
-import '../css/general.css'
-import "../css/home.scss";
+import '../trangchu/general.css'
+import "../trangchu/home.scss";
 
 function Us (){
     return(

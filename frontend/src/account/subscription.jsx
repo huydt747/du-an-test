@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../css/subscription.css';
+import './subscription.css';
 
 const NewsletterSubscriptions = () => {
   const [subscriptions, setSubscriptions] = useState({

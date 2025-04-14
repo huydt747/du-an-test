@@ -1,5 +1,5 @@
 
-import "../css/media.css";
+import "./media.css";
 
 function Media() {
     return(

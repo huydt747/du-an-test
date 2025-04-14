@@ -1,4 +1,4 @@
-import '../css/Style.css'
+import './Style.css'
 
 
 

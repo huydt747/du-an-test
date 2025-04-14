@@ -3,18 +3,18 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import './index.css'
 import App from './App'
-import TrangChu from "./pages/TrangChu";
-import America from "./pages/America";
-import Health from "./pages/Health";
-import Us from "./pages/Us";
-import Business from "./pages/Business";
-import World from "./pages/World";
-import Signin from "./pages/signin";
-import ProfilePage from "./pages/profile";
-import NewsletterSubscriptions from "./pages/subscription";
-import Style from "./pages/Style";
-import Entertainment from "./pages/Entertainment";
-import ArticlePage from "./pages/articles";
+import TrangChu from "./trangchu/TrangChu";
+import America from "./world/America";
+import Health from "./health/Health";
+import Us from "./US/Us";
+import Business from "./business/business";
+import World from "./world/World";
+import Signin from "./account/signin";
+import ProfilePage from "./account/profile";
+import NewsletterSubscriptions from "./account/subscription";
+import Style from "./Style/Style";
+import Entertainment from "./entertainment/Entertainment";
+import ArticlePage from "./detail-news/articles";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 
