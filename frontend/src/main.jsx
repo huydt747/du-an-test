@@ -14,6 +14,7 @@ import ProfilePage from "./pages/profile";
 import NewsletterSubscriptions from "./pages/subscription";
 import Style from "./pages/Style";
 import Entertainment from "./pages/Entertainment";
+import ArticlePage from "./pages/articles";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path:"/newsletters",
         element: <NewsletterSubscriptions/>,
+      },
+      {
+        path:"/articles",
+        element: <ArticlePage/>,
       }
     ],
   },
