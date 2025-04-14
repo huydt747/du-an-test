@@ -13,8 +13,8 @@ function Header(){
                     <a href="">Politics</a>
                     <a href="/business">Business</a>
                     <a href="/health">Health</a>
-                    <a href="">Entertainment</a>
-                    <a href="">Style</a>
+                    <a href="/entertainment">Entertainment</a>
+                    <a href="/style">Style</a>
                     <a href="">Travel</a>
                     <a href="">Sports</a>
                     <a href="">

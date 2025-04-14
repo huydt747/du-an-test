@@ -12,6 +12,8 @@ import World from "./pages/World";
 import Signin from "./pages/signin";
 import ProfilePage from "./pages/profile";
 import NewsletterSubscriptions from "./pages/subscription";
+import Style from "./pages/Style";
+import Entertainment from "./pages/Entertainment";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 
@@ -49,6 +51,14 @@ const router = createBrowserRouter([
       {
         path:"/world",
         element: <World/>,
+      },
+      {
+        path:"/style",
+        element: <Style/>,
+      },
+      {
+        path:"/entertainment",
+        element: <Entertainment/>,
       },
       {
         path:"/account/settings",
