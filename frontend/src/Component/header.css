@@ -21,11 +21,12 @@
 .list-menu .list-title {
     display: flex;
     gap: 20px;
+    padding-top: 10px;
 }
 
 .list-menu .list-title img {
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
 }
 
 .list-title a {
@@ -128,4 +129,7 @@
     color: gray;
 }
 
-/* phần tin tức */
+#logo {
+    width: 50px;
+    height: 30px;
+}

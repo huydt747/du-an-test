@@ -1,13 +1,13 @@
 import React from 'react';
 import './header.css';
-
+import ccn from '../assets/ccn.png'
 function Header(){
     return(
         <div className="header">
             <div className="list-menu">
                 <div className="list-title">
                     <a href=""><img src="https://icons.iconarchive.com/icons/colebemis/feather/48/list-icon.png" alt="" /></a>
-                    <a href="/"><img src="" alt="" /></a>
+                    <a href="/"><img src={ccn} alt="" id='logo'/></a>
                     <a href="/us">US</a>
                     <a href="/world">World</a>
                     <a href="">Politics</a>
