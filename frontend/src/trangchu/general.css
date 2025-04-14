@@ -1,3 +1,7 @@
+body{
+    margin: 0 auto;
+    padding-top: 70px;
+}
 h1{
     font-size: 40px;
 }
@@ -10,6 +14,7 @@ h1{
 }
 .container1 .list-news1{
     width: 700px;
+
 }
 .sidebar-new1{
     display: flex;
