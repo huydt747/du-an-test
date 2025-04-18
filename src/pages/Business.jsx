@@ -1,3 +1,5 @@
+import React from 'react';
+
 import "../css/business.css";
 
 function Business() {

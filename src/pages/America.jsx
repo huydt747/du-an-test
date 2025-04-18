@@ -1,3 +1,5 @@
+import React from 'react';
+
 import '../css/general.css'
 import "../css/home.scss";
 
