@@ -1,25 +1,13 @@
-const { Client } = require('pg');
+const mysql = require('mysql2/promise');
 
-const client = new Client({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'postgres',
-  password: '1234',
-  port: 5432,
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-async function connectDB() {
-  try {
-    await client.connect();
-    console.log('Connected to PostgreSQL');
-  } catch (err) {
-    console.error('Connection error:', err.stack);
-    process.exit(1);
-  }
-}
-
-function getClient() {
-  return client;
-}
-
-module.exports = { connectDB, getClient };
+module.exports = pool;

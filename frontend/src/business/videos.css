@@ -1,0 +1,358 @@
+body{
+    margin: 0 auto;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.videos{
+    width:90%;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.videos .list-business{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+.videos .list-business a{
+    font-weight: bold;
+}
+.videos .list-business a:hover{
+    text-decoration: underline;
+}
+.videos .markets{
+    width: 100%;
+    height: 120px;
+    display: flex;
+    border-bottom: 1px solid #d4d0d0;
+}
+/*1*/
+.videos .markets #markets{
+    width: 30%;
+    height: auto; 
+    font-size: 13px;
+    border-right: 1px solid #d4d0d0;
+}
+.videos .markets #markets .title{
+    font-weight: bold;
+}
+.videos .markets #markets .title a{
+    text-decoration: none;
+}
+.videos .markets #markets .title img{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 6px;
+}
+.videos .markets #markets .stock-market{
+    display: flex;
+    margin-top: 10px;
+}
+.videos .markets #markets .stock-market .name-stock{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.videos .markets #markets .stock-market .shares{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+.videos .markets #markets .stock-market .bull-market{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+.videos .markets #markets .stock-market .bull-market a img{
+    width: 13px;
+}
+
+/**/
+.videos .markets .fear{
+    width: 30%;
+    height: auto;
+    font-size: 13px;
+    border-right: 1px solid #d4d0d0;
+    padding-left: 10px;
+}
+.videos .markets .fear .title{
+    font-weight: bold;
+}
+.videos .markets .fear .title img{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 6px;
+}
+.videos .markets .fear .extreme{
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+.videos .markets .fear .extreme img{
+    width: 80px;
+    height: 80px;
+    position: relative;
+    top: 10px;
+    left: 20px;
+}
+.videos .markets .fear .extreme a{
+    position: relative;
+    left: 50px;
+    top: 20px;
+}
+/**/
+.videos .markets .latest{
+    width: 40%;
+    height: auto;
+    font-size: 13px;
+    padding-left: 10px;
+}
+.videos .markets .latest .title{
+    font-weight: bold;
+}
+.videos .markets .latest .title img{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 6px;
+}
+.videos .markets .latest .title-latest{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding-top: 10px;
+}
+/***********************/
+.videos .text-videos{
+    padding-top: 20px;
+    font-size: 40px;
+    font-weight: bold;
+}
+.videos .news{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 30px;
+}
+/**/
+.videos .news .news-left{
+    width: 40%;
+    height: auto;
+    margin: 0 auto
+}
+.videos .news .news-left a img{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: opacity 0s ease-in-out;
+}
+.videos .news .news-left a img:hover{
+    opacity: 0.7;
+}
+.videos .news .news-left a{
+    width: 100%;
+    height: auto;
+    font-size: 20px;
+    font-weight: bold;
+}
+.videos .news .news-left a:hover{
+    text-decoration: underline;
+}
+.videos .news .news-left .newsmax{
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+.videos .news .news-left .newsmax .newsmax-title{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    border-top: 1px solid #ccc;
+}
+.videos .news .news-left .newsmax .newsmax-title img{
+    width: 20%;
+    height: 20%;
+    position: relative;
+    top: 15px;
+    border-radius: 5px;
+}
+.videos .news .news-left .newsmax .newsmax-title a{
+    font-weight: normal;
+    font-size: 17px;
+    position: relative;
+    top: 15px;
+}
+.videos .news .news-left .newsmax .newsmax-title a:hover{
+    text-decoration: underline;
+}
+/**/
+.videos .news .news-between{
+    width: 40%;
+    height: auto;
+    margin: 0 auto
+}
+.videos .news .news-between a img{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: opacity 0s ease-in-out;
+}
+.videos .news .news-between a img:hover{
+    opacity: 0.7;
+}
+.videos .news .news-between a{
+    width: 100%;
+    height: auto;
+    font-size: 20px;
+    font-weight: bold;
+}
+.videos .news .news-between a:hover{
+    text-decoration: underline;
+}
+.videos .news .news-between .newsmax{
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+.videos .news .news-between .newsmax .newsmax-title{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    border-top: 1px solid #ccc;
+}
+.videos .news .news-between .newsmax .newsmax-title img{
+    width: 20%;
+    height: 20%;
+    position: relative;
+    top: 15px;
+    border-radius: 5px;
+}
+.videos .news .news-between .newsmax .newsmax-title a{
+    font-weight: normal;
+    font-size: 17px;
+    position: relative;
+    top: 15px;
+}
+.videos .news .news-between .newsmax .newsmax-title a:hover{
+    text-decoration: underline;
+}
+/**/
+.videos .news .news-right{
+    width: 30%;
+    height: auto;
+    display: flex; 
+    flex-direction: column;
+    gap: 25px;
+}.videos .news .news-right .news-right-title{
+    display: flex;
+    flex-direction: column;
+}
+.videos .news .news-right .news-right-title a {
+    font-size: 20px;
+    font-weight: bold;
+}
+.videos .news .news-right .news-right-title a:hover{
+    text-decoration: underline;
+}
+.videos .news .news-right .news-right-title a img{
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    transition: opacity 0s ease-in-out;
+}
+.videos .news .news-right .news-right-title a img:hover{
+    opacity: 0.7;
+}
+/**/
+.videos .news .advertise{
+    width: 30%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.videos .news .advertise .news-right-title{
+    display: flex;
+    flex-direction: column;
+}
+.videos .news .advertise .news-right-title a {
+    font-size: 20px;
+    font-weight: bold;
+}
+.videos .news .advertise .news-right-title a:hover{
+    text-decoration: underline;
+}
+.videos .news .advertise .news-right-title a img{
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    transition: opacity 0s ease-in-out;
+}
+.videos .news .advertise .news-right-title a img:hover{
+    opacity: 0.7;
+}
+/**/
+.videos .what-to-watch{
+    width: 100%;
+    height: 400px;
+    margin-top: 100px;
+}
+.videos .what-to-watch .name-title{
+    font-size: 40px;
+    font-weight: bold;
+}
+.videos .what-to-watch .what-news{
+    width: 100%;
+    height: auto;
+    display: flex;
+    gap: 20px;
+}
+.videos .what-to-watch .what-news .news{
+    width: 25%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.videos .what-to-watch .what-news .news a img{
+    width: 100%;
+    height: 200px;
+    border-radius: 5px;
+    transition: opacity 0s ease-in-out;
+}
+.videos .what-to-watch .what-news .news a img:hover{
+    opacity: 0.7;
+}
+.videos .what-to-watch .what-news .news a{
+    font-size: 17px;
+    font-weight: normal;
+    position: relative;
+}
+.videos .what-to-watch .what-news .news a:hover{
+    text-decoration: underline;
+}

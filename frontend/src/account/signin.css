@@ -1,0 +1,115 @@
+.cnn-login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+.cnn-login-box {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.cnn-login-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+.cnn-signup-text {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 25px;
+}
+.cnn-signup-link {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: bold;
+}
+.cnn-signup-link:hover{
+    text-decoration: underline;
+}
+.cnn-login-form {
+    margin-bottom: 25px;
+}
+.cnn-form-group {
+    margin-bottom: 20px;
+}
+.cnn-input-label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+.cnn-input-field {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+.cnn-input-field:focus {
+    outline: none;
+    border-color: #c00;
+}
+.cnn-forgot-password {
+    display: block;
+    font-size: 13px;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    margin-top: 8px;
+    text-align: right;
+}
+.cnn-forgot-password:hover{
+    text-decoration: underline;
+}
+.cnn-signin-button {
+    width: 100%;
+    padding: 14px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.cnn-signin-button:hover {
+    background-color: #666;
+}
+.cnn-terms-text {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+.cnn-terms-link {
+    color: rgb(0, 0, 0);
+    text-decoration: underline;
+}
+.cnn-social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.cnn-social-button {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cnn-social-button:hover {
+    background-color: #f5f5f5;
+}
