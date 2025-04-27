@@ -3,18 +3,47 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 import mysql.connector
 import time
-import json # Cần import json nếu dùng cột JSON trong DB
+import re
+import unicodedata
+
+# Hàm tạo slug từ tiêu đề
+def create_slug(title, connection=None):
+    if not title:
+        return ""
+    
+    # Chuyển đổi unicode thành ASCII
+    slug = unicodedata.normalize('NFKD', title).encode('ascii', 'ignore').decode('ascii')
+    # Chuyển thành chữ thường
+    slug = slug.lower()
+    # Thay thế các ký tự không phải chữ cái, số hoặc dấu gạch ngang bằng dấu gạch ngang
+    slug = re.sub(r'[^a-z0-9]+', '-', slug)
+    # Loại bỏ dấu gạch ngang ở đầu và cuối
+    slug = slug.strip('-')
+    # Giới hạn độ dài slug
+    slug = slug[:100]
+    
+    # Kiểm tra slug có tồn tại trong DB không (nếu có connection)
+    if connection and connection.is_connected():
+        try:
+            cursor = connection.cursor()
+            cursor.execute("SELECT COUNT(*) FROM detailed_news WHERE slug = %s", (slug,))
+            count = cursor.fetchone()[0]
+            cursor.close()
+            
+            if count > 0:
+                # Thêm timestamp nếu slug đã tồn tại
+                slug = f"{slug}-{int(time.time())}"
+        except Exception as e:
+            print(f"⚠️ Lỗi khi kiểm tra slug: {str(e)}")
+    
+    return slug
 
 # Khởi tạo trình duyệt
 driver = webdriver.Chrome()
-# --- SỬA LỖI 1: Truy cập trang danh sách bài viết ---
-# driver.get("https://edition.cnn.com/science")
-# print("Đã truy cập trang CNN Science...")
-# Thay bằng URL cụ thể mà bạn muốn
 specific_url = "https://edition.cnn.com/2025/04/03/science/ancient-dna-green-sahara-mummies/index.html"
 driver.get(specific_url)
 print(f"Đã truy cập trang: {specific_url}")
-time.sleep(5) # Tăng thời gian chờ trang tải hoàn chỉnh
+time.sleep(5)
 
 connection = None
 
@@ -22,149 +51,148 @@ try:
     # Kết nối MySQL
     connection = mysql.connector.connect(
         host='127.0.0.1',
-        database='bao',     # Thay tên DB nếu cần
-        user='root',        # Thay user nếu cần
-        password=''         # Thay password nếu cần
+        database='bao',
+        user='root',
+        password=''
     )
     print('✅ Đã kết nối MySQL')
 
     article_data = {
-        'url': '',
+        'url': specific_url,
         'title': '',
+        'slug': '',
         'author': '',
         'image_url': '',
         'image_caption': '',
-        'content': '',  # Thay content_paragraph bằng content để lưu toàn bộ nội dung
+        'content': '',
         'subheader': '',
-        'inline_images': [] # Thêm nếu bạn có cột này trong DB
+        'inline_images': [],
+        'publication_date': None
     }
 
-    article_data['url'] = specific_url
-
-    # --- SỬA LỖI 2 & 3: Lấy từng phần tử với XPath linh hoạt và try-except riêng ---
-
-    # 1. Lấy tiêu đề (Thử nhiều selector)
+    # 1. Lấy tiêu đề và tạo slug
     try:
-        # Ưu tiên data-editable nếu có
         title_element = driver.find_element(By.XPATH, '//h1[@data-editable="headlineText"]')
         article_data['title'] = title_element.text.strip()
     except NoSuchElementException:
         try:
-            # Thử selector cũ hơn của bạn nhưng bỏ bớt class phụ
             title_element = driver.find_element(By.XPATH, '//h1[contains(@class,"headline__text")]')
             article_data['title'] = title_element.text.strip()
         except NoSuchElementException:
             print("⚠️ Không tìm thấy tiêu đề (h1)")
-            article_data['title'] = '' # Gán giá trị mặc định nếu không tìm thấy
+    
+    # Tạo slug sau khi có title
+    if article_data['title']:
+        article_data['slug'] = create_slug(article_data['title'], connection)
 
-    # 2. Tác giả (Thử nhiều cấu trúc)
+    # 2. Tác giả
     try:
-        # Thử lấy tên tác giả từ class byline__name
         author_elements = driver.find_elements(By.XPATH, '//span[@class="byline__name"]')
         if author_elements:
             article_data['author'] = ', '.join([elem.text for elem in author_elements if elem.text])
         else:
-            # Thử lấy tác giả từ link trong byline__names (ví dụ: "By Jacopo Prisco, CNN")
-            byline_element = driver.find_element(By.XPATH, '//div[@class="byline__names"]')
-            if byline_element:
-                text = byline_element.text
-                if text.startswith("By "):
-                    article_data['author'] = text[3:].split(',')[0].strip()
+            try:
+                byline_element = driver.find_element(By.XPATH, '//div[@class="byline__names"]')
+                if byline_element:
+                    text = byline_element.text
+                    if text.startswith("By "):
+                        article_data['author'] = text[3:].split(',')[0].strip()
+            except NoSuchElementException:
+                pass
     except NoSuchElementException:
-        print("ℹ️ Lỗi khi tìm tên tác giả")
-        article_data['author'] = '' # Gán giá trị mặc định nếu không tìm thấy
+        print("ℹ️ Không tìm thấy tác giả")
 
-
-    # 3. Ảnh đại diện (Thường là ảnh đầu tiên)
+    # 3. Ảnh đại diện
     try:
-        # Lấy src hoặc data-src của ảnh đầu tiên trong bài
         main_img_element = driver.find_element(By.XPATH, '(//img[contains(@class, "image__dam-img")])[1]')
         article_data['image_url'] = main_img_element.get_attribute("src") or main_img_element.get_attribute("data-src") or ""
     except NoSuchElementException:
-        print("ℹ️ Không tìm thấy ảnh đại diện (img)")
-        article_data['image_url'] = '' # Gán giá trị mặc định nếu không tìm thấy
+        print("ℹ️ Không tìm thấy ảnh đại diện")
 
-    # 4. Chú thích ảnh (Caption của ảnh đại diện - nếu có)
+    # 4. Chú thích ảnh
     try:
-        # Tìm caption trong div với class image__caption và attribution, sau đó lấy span con có data-editable
         caption_element = driver.find_element(By.XPATH, '//div[contains(@class, "image__caption") and contains(@class, "attribution")]//span[@data-editable="metaCaption"]')
         article_data['image_caption'] = caption_element.text.strip()
     except NoSuchElementException:
-        print("ℹ️ Không tìm thấy chú thích ảnh đại diện")
-        article_data['image_caption'] = '' # Gán giá trị mặc định nếu không tìm thấy
+        print("ℹ️ Không tìm thấy chú thích ảnh")
 
-
-    # 5. Lấy toàn bộ nội dung bài viết từ các thẻ p có class 'paragraph inline-placeholder vossi-paragraph'
+    # 5. Nội dung bài viết
     try:
         paragraph_elements = driver.find_elements(By.XPATH, '//p[contains(@class, "paragraph") and contains(@class, "inline-placeholder") and contains(@class, "vossi-paragraph")]')
         content_parts = [p.text.strip() for p in paragraph_elements if p.text.strip()]
-        article_data['content'] = "\n\n".join(content_parts) # Nối các đoạn văn bằng dấu xuống dòng đôi
+        article_data['content'] = "\n\n".join(content_parts)
     except NoSuchElementException:
-        print("ℹ️ Không tìm thấy nội dung bài viết (các thẻ p có class 'paragraph inline-placeholder vossi-paragraph')")
-        article_data['content'] = ''
+        print("ℹ️ Không tìm thấy nội dung bài viết")
 
-    # 6. Subheader (Ví dụ: h2 đầu tiên trong bài)
+    # 6. Subheader
     try:
-        # Tìm h2 đầu tiên trong vùng nội dung bài viết
         subheader_element = driver.find_element(By.XPATH, '(//div[contains(@class,"article__content")]//h2)[1]')
         article_data['subheader'] = subheader_element.text.strip()
     except NoSuchElementException:
-        # print("ℹ️ Không tìm thấy subheader (h2)") # Thường không quá quan trọng
-        article_data['subheader'] = '' # Gán giá trị mặc định nếu không tìm thấy
+        pass
 
-    # In thông tin lấy được (tùy chọn)
-    print(f"  Tiêu đề: {article_data['title'][:60]}...")
+    # 7. Ngày xuất bản (nếu có)
+    try:
+        date_element = driver.find_element(By.XPATH, '//div[contains(@class, "timestamp")]')
+        article_data['publication_date'] = date_element.text.strip()
+    except NoSuchElementException:
+        print("ℹ️ Không tìm thấy ngày xuất bản")
+
+    # In thông tin lấy được
+    print("\nThông tin bài viết:")
+    print(f"  Tiêu đề: {article_data['title']}")
+    print(f"  Slug: {article_data['slug']}")
     print(f"  Tác giả: {article_data['author']}")
-    print(f"  Ảnh: {article_data['image_url'][:70]}...")
+    print(f"  Ảnh: {article_data['image_url'][:70]}..." if article_data['image_url'] else "  Ảnh: Không có")
     print(f"  Caption: {article_data['image_caption']}")
-    print(f"  Nội dung: {article_data['content'][:200]}...") # In một phần nội dung để kiểm tra
+    print(f"  Nội dung: {article_data['content'][:200]}..." if article_data['content'] else "  Nội dung: Không có")
     print(f"  Subheader: {article_data['subheader']}")
+    print(f"  Ngày xuất bản: {article_data['publication_date']}")
 
-    # --- SỬA LỖI 4: LƯU VÀO DATABASE vào bảng detailed_news ---
+    # Lưu vào database
     if article_data['title'] and article_data['url']:
         cursor = connection.cursor()
-        # Thay đổi tên bảng thành detailed_news và các tên cột tương ứng
         sql = """INSERT INTO detailed_news
-                     (url, title, author, image_url, image_caption, content, subheader)
-                     VALUES (%s, %s, %s, %s, %s, %s, %s)
-                     ON DUPLICATE KEY UPDATE
-                     title = VALUES(title),
-                     author = VALUES(author),
-                     image_url = VALUES(image_url),
-                     image_caption = VALUES(image_caption),
-                     content = VALUES(content),
-                     subheader = VALUES(subheader),
-                     scraped_at = CURRENT_TIMESTAMP""" # Cập nhật thời gian scrape
+                 (url, title, slug, author, image_url, image_caption, content, subheader, publication_date)
+                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                 ON DUPLICATE KEY UPDATE
+                 title = VALUES(title),
+                 slug = VALUES(slug),
+                 author = VALUES(author),
+                 image_url = VALUES(image_url),
+                 image_caption = VALUES(image_caption),
+                 content = VALUES(content),
+                 subheader = VALUES(subheader),
+                 publication_date = VALUES(publication_date),
+                 scraped_at = CURRENT_TIMESTAMP"""
 
-        # Đảm bảo tuple giá trị khớp với thứ tự cột trong SQL
         values = (
             article_data['url'],
             article_data['title'],
+            article_data['slug'],
             article_data['author'],
             article_data['image_url'],
             article_data['image_caption'],
-            article_data['content'], # Sử dụng article_data['content']
-            article_data['subheader']
-            # Thêm giá trị cho các cột khác nếu có
+            article_data['content'],
+            article_data['subheader'],
+            article_data['publication_date']
         )
         cursor.execute(sql, values)
         connection.commit()
         cursor.close()
-        print(f"✅ Đã lưu/cập nhật vào detailed_news: {article_data['title'][:50]}...")
+        print(f"\n✅ Đã lưu/cập nhật bài viết vào database")
     else:
-        print("⚠️ Thiếu URL hoặc Tiêu đề, không lưu vào DB.")
+        print("\n⚠️ Không lưu vào database do thiếu tiêu đề hoặc URL")
 
 except mysql.connector.Error as err:
-    print(f"❌ Lỗi kết nối MySQL: {err}")
+    print(f"❌ Lỗi MySQL: {err}")
 except Exception as e:
-    print(f"❌ Lỗi chính trong quá trình chạy: {str(e)}")
+    print(f"❌ Lỗi: {str(e)}")
 finally:
     if 'driver' in locals() and driver:
-        print("\nĐang đóng trình duyệt...")
         driver.quit()
+        print("✅ Đã đóng trình duyệt")
     if connection and connection.is_connected():
         connection.close()
-        print("✅ Đã đóng kết nối MySQL")
-    else:
-        print("ℹ️ Không có kết nối MySQL để đóng hoặc đã đóng.")
-    print("✅ Hoàn tất")
+        print("✅ Đã đóng kết nối database")
+    print("🛑 Kết thúc chương trình")
