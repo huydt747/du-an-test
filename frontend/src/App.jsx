@@ -1,26 +1,20 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Category from './pages/Category';
-import ArticleDetail from './pages/ArticleDetail';
-import AdminPage from './pages/AdminPages';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import ScrollToTop from './components/ScrollToTop';
+import { Outlet, useLocation } from "react-router-dom";
+import Header from "./Component/header";
+import Footer from "./Component/footer";
 
-function App() {
+const App = () => {
+  const location = useLocation();
+  const isSignInPage = location.pathname === "/sign-in";
+
   return (
-    <Router>
-      <Navbar />
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/categories/:slug" element={<Category />} />
-        <Route path="/article/:slug" element={<ArticleDetail />} />
-        <Route path="/admin" element={<AdminPage />} />
-      </Routes>
-      <Footer/>
-    </Router>
+    <>
+      <Header />
+      <div className="wrapper">
+        <Outlet />
+      </div>
+      {!isSignInPage && <Footer />}
+    </>
   );
-}
+};
 
 export default App;

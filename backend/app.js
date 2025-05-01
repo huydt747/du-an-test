@@ -1,28 +1,32 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const app = express();
-const PORT = 3001;
+const port = 5000;
+const { connectDB } = require('./db');
 
-app.use(cors({
-  origin: 'http://localhost:5173',
-  credentials: true
-}));
+app.use(cors());
+app.use(express.json());
 
-// Middleware để parse body
-app.use(bodyParser.json());
+connectDB();
 
-// Đăng ký các route
-const articlesRoutes = require('./articles');
-app.use('/api/articles', articlesRoutes);
+app.get('/', (req, res) => {
+    res.send('Đây là Backend API');
+});
 
-const categoriesRoutes = require('./categories');
-app.use('/api/categories', categoriesRoutes);
+try {
+	// mẫu
+    const Template = require('./template');
+    app.use('/api/template', Template);
 
-const adminAuthRoutes = require('./adminAuth');
-app.use('/api/admin', adminAuthRoutes);
+} catch (err) {
+    console.error('Error importing routes:', err.message);
+}
 
-// Khởi động server
-app.listen(PORT, () => {
-  console.log(`Server đang chạy tại http://localhost:${PORT}`);
+app.use((err, req, res, next) => {
+    console.error('Unhandled error:', err);
+    res.status(500).send('Something went wrong!');
+});
+
+app.listen(port, () => {
+    console.log(`Backend is running on http://localhost:${port}`);
 });
