@@ -1,21 +1,26 @@
-import { Outlet } from "react-router-dom"
-import Header from "./components/header";
-import Footer from "./components/footer";
-import NavBar from "./components/nav";
-import HomeFunction from "./components/homefunction";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Category from './pages/Category';
+import ArticleDetail from './pages/ArticleDetail';
+import AdminPage from './pages/AdminPages';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
-const App=()=>{
-  return(
-      <>
-      <Header />
-      {/* <NavBar/> */}
-      <div className="wrapper">
-        <Outlet />
-      </div>
-      <Footer />
+function App() {
+  return (
+    <Router>
+      <Navbar />
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/categories/:slug" element={<Category />} />
+        <Route path="/article/:slug" element={<ArticleDetail />} />
+        <Route path="/admin" element={<AdminPage />} />
+      </Routes>
+      <Footer/>
+    </Router>
+  );
+}
 
-      </>
-  )
-}  
-
-export default App
+export default App;

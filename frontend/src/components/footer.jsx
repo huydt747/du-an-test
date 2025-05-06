@@ -1,5 +1,4 @@
 import React from "react";
-import  "../css/home.css"
 import  "../css/footer.css"
 function Footer() {
     return (
@@ -36,12 +35,11 @@ function Footer() {
             
             <article>
             <form method="post">
-                <input type="text" placeholder="Search CNN..." />
+                <input type="text" id="SearchCNN" placeholder="Search CNN..." />
                 <button type="submit">Search →</button>
             </form>
 
             <div>
-                <img src="" alt="User Avatar" />
                 <h3>Log In</h3>
             </div>
 
