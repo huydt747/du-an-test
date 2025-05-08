@@ -1,48 +1,42 @@
 name: Build Frontend
 on:
   push:
-    branches: [ "kien" ]  
+    branches: [ "kien" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read  
-
+      contents: read
+      
     defaults:
       run:
-        working-directory: frontend  
+        working-directory: frontend
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  
 
-      - name: Debug - List files
+
+      - name: Debug file structure
         run: |
-          echo "Cấu trúc thư mục:"
+          echo "Current directory: $(pwd)"
           ls -R
-          echo "Kiểm tra package.json:"
-          cat package.json
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'npm'  
+          node-version: '20'  
+          cache: 'npm'
 
       - name: Install dependencies
-        run: |
-          npm ci  # Sử dụng npm ci thay vì install để đảm bảo chính xác version
-          echo "Đã cài đặt dependencies"
+        run: npm ci
 
       - name: Build with Vite
-        run: |
-          npm run build
-          echo "Build thành công!"
+        run: npm run build
 
       - name: Upload build artifacts
-        if: success()  # Chỉ chạy khi build thành công
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: dist
-          path: frontend/dist  #
+          name: frontend-dist
+          path: dist  
