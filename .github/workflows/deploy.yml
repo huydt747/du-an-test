@@ -1,41 +1,27 @@
-name: Deploy Frontend
+name: React CI/CD
+
 on:
   push:
-    branches: [ "kien" ]  
+    branches:
+      - kien
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name:  Checkout source code
+        uses: actions/checkout@v3
 
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name:  Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: '18'
 
-      
-      - name: Install dependencies
-        working-directory: frontend  
-        run: npm ci --no-audit
+      - name:  Install dependencies
+        run: npm install
 
-      
-      - name: Build with Vite
-        working-directory: frontend
+      - name:  Build React App
         run: npm run build
 
-    
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          target-branch: gh-pages
-          publish-dir: frontend/dist  
+      
