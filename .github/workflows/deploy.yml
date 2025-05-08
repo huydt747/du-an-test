@@ -1,22 +1,30 @@
-name:  React Deployment
+name:  Deploy React App  
+
 on:
   push:
-    branches: [kien]  
+    branches: [kien]      
+  pull_request:
+    branches: [kien]      
+
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: 🔧 Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: "20.x"
-      - name: Install & Build
-        working-directory: ./frontend
+          node-version: "20.x"  
+
+      - name: 📦 Install & Build
+        working-directory: ./frontend  
         run: |
           npm install
           npm run build
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+
+      - name: 🚀 Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: build
-          path: ./frontend/dist
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./frontend/dist  
