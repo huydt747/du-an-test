@@ -1,30 +1,27 @@
-name:  Deploy React App  
+name: React CI/CD
 
 on:
   push:
-    branches: [kien]      
-  pull_request:
-    branches: [kien]      
+    branches:
+      - kien
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - name: 🔧 Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20.x"  
+      - name:  Checkout source code
+        uses: actions/checkout@v3
 
-      - name: 📦 Install & Build
-        working-directory: ./frontend  
-        run: |
-          npm install
-          npm run build
-
-      - name: 🚀 Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name:  Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./frontend/dist  
+          node-version: '18'
+
+      - name:  Install dependencies
+        run: npm install
+
+      - name:  Build React App
+        run: npm run build
+
+      
