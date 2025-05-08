@@ -2,32 +2,21 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [main]
+    branches: [kien]  
+  pull_request:
+    branches: [kien]  
 
 jobs:
   build-react:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "18.x"
-
-      - name: Install and Build Frontend
+      - name: Install & Build
         working-directory: ./frontend
         run: |
           npm install
           npm run build
-
-  deploy:
-    needs: build-react
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Deploy to Vercel (ví dụ)
-        run: |
-          npm install -g vercel
-          vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
