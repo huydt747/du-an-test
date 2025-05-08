@@ -1,4 +1,4 @@
-name: React CI/CD
+name: Vite React CI/CD
 
 on:
   push:
@@ -9,19 +9,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./frontend
+
     steps:
-      - name:  Checkout source code
+      - name: Checkout source
         uses: actions/checkout@v3
 
-      - name:  Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      - name:  Install dependencies
-        run: npm install
+      - name: Install dependencies
+        run: npm ci
 
-      - name:  Build React App
+      - name: Build Vite App
         run: npm run build
-
-      
