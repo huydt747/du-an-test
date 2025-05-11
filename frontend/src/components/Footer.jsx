@@ -4,176 +4,57 @@ function Footer() {
     return (
         <div className="footer">
             <h1>In Case You Missed It</h1>
-            <article>
-                <div>
-                    <img 
-                        src="https://media.cnn.com/api/v1/images/stellar/prod/230808141753-simone-biles-mental-health-break-wellness.jpg?c=16x9&q=h_438,w_780,c_fill" 
-                        alt="Simone Biles mental health break"
-                    />
-                    <h1>What we can learn from Simone Biles’ mental health break</h1>
-                </div>
-                <ul>
-                    <li><a href="#">Great Barrier Reef stays off UNESCO ‘in danger’ list but hot El Niño summer looms</a></li>
-                    <li><a href="#">Italian fugitive’s love of soccer gets him caught in Greece</a></li>
-                    <li><a href="#">Foo Fighters and Alanis Morissette pay tribute to Sinéad O’Connor</a></li>
-                    <li><a href="#">The UK will drill for more oil and gas in the North Sea</a></li>
-                    <li><a href="#">The minority who back Netanyahu to the hilt</a></li>
-                    <li>
-                        <a href="#">
-                            <i className="bi bi-camera" style={{ paddingRight: "1ch" }}></i>
-                            Haunting images of abandoned sites overrun by nature
+                <article>
+                     <div className="news-feature">
+                        <a 
+                            href="/article/the-worlds-largest-architectural-model-captures-new-york-city-in-the-90s-1745808799" 
+                            className="featured-link"
+                            >
+                            <img 
+                            src="https://media.cnn.com/api/v1/images/stellar/prod/mt25-161213-13-52-09-5dsr7989.jpg?q=w_2000,c_fill" 
+                            alt="The world’s largest architectural model captures New York City in the ’90s"
+                            className="featured-image"
+                            />
+                            <h1 className="featured-title">
+                            The world’s largest architectural model captures New York City in the ’90s
+                            </h1>
                         </a>
-                    </li>
-                    <li><a href="#">Elon Musk reactivates Kanye West’s Twitter account following X rebrand</a></li>
-                    <li><a href="#">The world’s most dramatic saltwater ‘sea pools’</a></li>
-                    <li><a href="#">Colombian president’s son arrested</a></li>
-                    <li><a href="#">Bear cools off in a California pool during heat wave</a></li>
-                    <li><a href="#">Fall asleep faster with mental tricks that calm your racing mind</a></li>
+                </div>
+
+                <ul className="news-list">
+                    <li><a href="/article/attacks-on-harvard-by-trump-administration-have-built-for-months-a-timeline-of-the-dispute-1745804464" className="news-link">Attacks on Harvard by Trump administration have built for months. A timeline of the dispute</a></li>
+                    <li><a href="/article/trumps-firstterm-pick-to-run-the-national-science-foundation-quits-i-have-done-all-i-can-1745765218" className="news-link">Trump’s first-term pick to run the National Science Foundation quits: ‘I have done all I can’</a></li>
+                    <li><a href="/article/united-airlines-plane-engine-shoots-out-fire-after-hitting-an-animal-on-takeoff-1745808911" className="news-link">United Airlines plane engine shoots out fire after hitting an animal on takeoff</a></li>
+                    <li><a href="/article/pakistani-astronaut-will-become-first-foreign-national-to-enter-chinese-space-station-1745765218" className="news-link">Pakistani astronaut will become first foreign national to enter Chinese space station</a></li>
+                    <li><a href="/article/amy-poehler-and-jack-black-hilariously-bond-over-their-sexy-cpap-machines-1745808638" className="news-link">Amy Poehler and Jack Black hilariously bond over their sexy CPAP machines</a></li>
+                    <li><a href="/article/with-some-athletes-suffering-financially-michael-johnson-hopes-his-new-league-can-bring-value-to-track-and-field-1745809152" className="news-link">With some athletes ‘suffering financially,’ Michael Johnson hopes his new league can bring value to track and field</a></li>
+                    <li><a href="/article/fossilized-footprints-reveal-unprecedented-insight-into-prehistoric-animal-behavior-in-oregon-1745808523" className="news-link">Fossilized footprints reveal unprecedented insight into prehistoric animal behavior in Oregon</a></li>
+                    <li><a href="/article/why-mango-sticky-rice-is-one-of-thailands-most-beloved-summer-dishes-1745808911" className="news-link">Why mango sticky rice is one of Thailand’s most beloved summer dishes</a></li>
+                    <li><a href="/article/an-ancient-terror-crocodile-became-a-dinosaureating-giant-scientists-say-they-now-know-why-1745765218" className="news-link">An ancient ‘terror crocodile’ became a dinosaur-eating giant. Scientists say they now know why</a></li>
+                    <li><a href="/article/investors-got-hosed-when-trumps-tariffs-tanked-markets-some-of-americas-billionaires-managed-to-sell-before-the-plunge-1745807994" className="news-link">Investors got hosed when Trump’s tariffs tanked markets. Some of America’s billionaires managed to sell before the plunge</a></li>
                 </ul>
-            </article>
+            </article>  
 
-            
-            <article>
-            <form method="post">
-                <input type="text" id="SearchCNN" placeholder="Search CNN..." />
-                <button type="submit">Search →</button>
-            </form>
+               
+                    <article class="footer-categories">
+                        <form method="Titlr">
+                            <h1>RELETED CATEGORIES</h1>
+                        </form>
+                        <a href="/categories/us" class="category-link">US</a>
+                        <a href="/categories/world" class="category-link">WORLD</a>
+                        <a href="/categories/politics" class="category-link">POLITICS</a>
+                        <a href="/categories/business" class="category-link">BUSINESS</a>
+                        <a href="/categories/entertainment" class="category-link">ENTERTAINMENT</a>
+                        <a href="/categories/health" class="category-link">HEALTH</a>
+                        <a href="/categories/style" class="category-link">STYLE</a>
+                        <a href="/categories/travel" class="category-link">TRAVEL</a>
+                        <a href="/categories/sports" class="category-link">SPORTS</a>
+                        <a href="/categories/science" class="category-link">SCIENCE</a>
+                     </article>
 
-            <div>
-                <h3>Log In</h3>
-            </div>
 
-            <div>
-                <h3 role="link">World</h3>
-                <a href="#">Africa</a>
-                <a href="#">Americas</a>
-                <a href="#">Asia</a>
-                <a href="#">Australia</a>
-                <a href="#">China</a>
-                <a href="#">Europe</a>
-                <a href="#">India</a>
-                <a href="#">Middle East</a>
-                <a href="#">United Kingdom</a>
-            </div>
 
-            <div>
-                <h3 role="link">US Politics</h3>
-                <a href="#">The Biden Presidency</a>
-                <a href="#">Facts First</a>
-                <a href="#">US Elections</a>
-            </div>
 
-            <div>
-                <h3 role="link">Business</h3>
-                <a href="#">Markets</a>
-                <a href="#">Tech</a>
-                <a href="#">Media</a>
-                <a href="#">Calculators</a>
-                <a href="#">Videos</a>
-            </div>
-
-            <div>
-                <h3 role="link">Health</h3>
-                <a href="#">Life, But Better</a>
-                <a href="#">Fitness</a>
-                <a href="#">Food</a>
-                <a href="#">Sleep</a>
-                <a href="#">Mindfulness</a>
-                <a href="#">Relationships</a>
-            </div>
-
-            <div>
-                <h3 role="link">Entertainment</h3>
-                <a href="#">Movies</a>
-                <a href="#">Television</a>
-                <a href="#">Celebrity</a>
-            </div>
-
-            <div>
-                <h3 role="link">Tech</h3>
-                <a href="#">Innovate</a>
-                <a href="#">Gadget</a>
-                <a href="#">Foreseeable Future</a>
-                <a href="#">Mission: Ahead</a>
-                <a href="#">Upstarts</a>
-                <a href="#">Work Transformed</a>
-                <a href="#">Innovative Cities</a>
-            </div>
-
-            <div>
-                <h3 role="link">Style</h3>
-                <a href="#">Arts</a>
-                <a href="#">Design</a>
-                <a href="#">Fashion</a>
-                <a href="#">Architecture</a>
-                <a href="#">Luxury</a>
-                <a href="#">Beauty</a>
-                <a href="#">Video</a>
-            </div>
-
-            <div>
-                <h3 role="link">Travel</h3>
-                <a href="#">Destinations</a>
-                <a href="#">Food & Drink</a>
-                <a href="#">Stay</a>
-                <a href="#">News</a>
-                <a href="#">Videos</a>
-            </div>
-
-            <div>
-                <h3 role="link">Sports</h3>
-                <a href="#">Football</a>
-                <a href="#">Tennis</a>
-                <a href="#">Golf</a>
-                <a href="#">Motorsport</a>
-                <a href="#">US Sports</a>
-                <a href="#">Olympics</a>
-                <a href="#">Climbing</a>
-                <a href="#">Esports</a>
-                <a href="#">Hockey</a>
-            </div>
-
-            <div>
-                <h3 role="link">Videos</h3>
-                <a href="#">Live TV</a>
-                <a href="#">Digital Studios</a>
-                <a href="#">CNN Films</a>
-                <a href="#">HLN</a>
-                <a href="#">TV Schedule</a>
-                <a href="#">TV Shows A-Z</a>
-                <a href="#">CNNVR</a>
-            </div>
-
-            <div>
-                <h3 role="link">Features</h3>
-                <a href="#">As Equals</a>
-                <a href="#">Call to Earth</a>
-                <a href="#">Freedom Project</a>
-                <a href="#">Impact Your World</a>
-                <a href="#">Inside Africa</a>
-                <a href="#">2 Degrees</a>
-                <a href="#">CNN Heroes</a>
-                <a href="#">All Features</a>
-            </div>
-
-            <div>
-                <h3 role="link">Weather</h3>
-                <a href="#">Climate</a>
-                <a href="#">Wildfire Tracker</a>
-                <a href="#">Video</a>
-            </div>
-
-            <div>
-                <h3 role="link">More</h3>
-                <a href="#">Photos</a>
-                <a href="#">Longform</a>
-                <a href="#">Investigations</a>
-                <a href="#">CNN Profiles</a>
-                <a href="#">CNN Leadership</a>
-                <a href="#">CNN Newsletters</a>
-                <a href="#">Work for CNN</a>
-            </div>
-            </article>
 
             
             {/* Phần 1: Live TV & Audio */}
@@ -199,25 +80,6 @@ function Footer() {
                 <a href="#">More</a>
             </article>
 
-            {/* Phần 3: Mạng xã hội và đăng nhập */}
-            <article>
-                <div>
-                <img src="placeholder" alt="US Logo" />
-                <a href="#">US</a>
-                </div>
-                <div>
-                <a href="#">Audio</a>
-                <a href="#">Live TV</a>
-                <p>|</p>
-                <p>FOLLOW CNN</p>
-                <i className="bi bi-facebook"></i>
-                <i className="bi bi-twitter"></i>
-                <i className="bi bi-instagram"></i>
-                <button>Log In</button>
-                </div>
-            </article>
-
-            {/* Phần 4: Chính sách & Bản quyền */}
             <article>
                 <a href="#">Terms of Use</a>
                 <a href="#">Privacy Policy</a>
