@@ -119,6 +119,18 @@ router.get('/latest/:limit', (req, res) => {
   });
 });
 
-
+// routes/articles.js
+router.patch('/:slug/views', async (req, res) => {
+  try {
+    const article = await Article.findOneAndUpdate(
+      { slug: req.params.slug },
+      { $inc: { views: 1 } },
+      { new: true }
+    );
+    res.json(article);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
 module.exports = router;

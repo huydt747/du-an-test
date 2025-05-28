@@ -61,6 +61,50 @@
   border-top: 1px solid #eee;
 }
 
+.views {
+  font-size: 0.8em;
+  color: #666;
+  margin-left: auto;
+  padding-left: 10px;
+}
+
+.top-articles ol {
+  list-style: none;
+  padding: 0;
+}
+
+.top-articles li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.top-articles li:hover {
+  background-color: #f5f5f5;
+}
+
+.top-articles li a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.rank {
+  font-weight: bold;
+  margin-right: 10px;
+  color: #333;
+  min-width: 20px;
+}
+
+.title {
+  flex-grow: 1;
+}
+
 .related-articles h2,
 .top-articles h2,
 .categories h2 {
