@@ -50,3 +50,18 @@
     background-color: #0056b3;
   }
   
+  .error {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 0.2em;
+}
+
+.character-count {
+  font-size: 0.8em;
+  color: #666;
+  text-align: right;
+}
+
+.character-count.warning {
+  color: orange;
+}
