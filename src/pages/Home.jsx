@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axiosClient from '../api/axiosClient';
 import { Link } from 'react-router-dom';
 import '../css/Home.css';
+import React from 'react';
 
 export default function Home() {
   const [categories, setCategories] = useState([]);

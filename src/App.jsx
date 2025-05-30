@@ -6,6 +6,7 @@ import AdminPage from './pages/AdminPages';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import React from 'react';
 
 function App() {
   return (

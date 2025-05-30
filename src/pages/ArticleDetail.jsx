@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axiosClient from "../api/axiosClient";
 import "../css/ArticleDetail.css";
-
+import React from 'react';
 export default function ArticleDetail() {
   const { slug } = useParams();
   const [article, setArticle] = useState(null);

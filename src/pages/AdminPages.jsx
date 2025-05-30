@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Login from '../components/Login';
 import AdminForm from '../components/AdminForm';
-
+import React from 'react';
 export default function AdminPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 

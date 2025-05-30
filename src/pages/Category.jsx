@@ -3,7 +3,7 @@ import axiosClient from '../api/axiosClient';
 import { useParams, Link } from 'react-router-dom';
 import '../css/Home.css';
 import '../css/Category.css';
-
+import React from 'react';
 export default function Category() {
   const { slug } = useParams();
   const [articles, setArticles] = useState([]);
