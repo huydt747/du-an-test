@@ -1,17 +1,16 @@
 FROM node:lts
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 COPY package*.json ./
-
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-
 RUN npm install
 
 COPY . .
 
 RUN npm run build
 
-EXPOSE 3000
-
-CMD ["npm", "start"]
+# Dùng nginx để phục vụ build frontend
+FROM nginx:alpine
+COPY --from=0 /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
