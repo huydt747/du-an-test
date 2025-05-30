@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
   });
 });
 
-// API 2: Lấy thông tin bài viết theo ID
+// API 2: Lấy thông tin bài viết theo slug
 router.get('/:slug', (req, res) => {
   const slug = req.params.slug;
   const query = 'SELECT * FROM articles WHERE slug = ?';
@@ -28,7 +28,6 @@ router.get('/:slug', (req, res) => {
   });
 });
 
-// API 3: Tạo mới bài viết
 // API 3: Tạo mới bài viết và thêm vào danh mục
 router.post('/', (req, res) => {
   const { title, url, author, image_url, image_caption, content, subheader, publication_date, slug, category_id } = req.body;
