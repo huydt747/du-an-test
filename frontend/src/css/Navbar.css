@@ -37,3 +37,35 @@
     font-weight: bold;
     margin-left: 10px;
 }
+.search-form {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.search-input {
+  padding: 6px 10px;
+  background-color: rgb(249, 249, 249); /* nền đen */
+  color: white;             /* chữ trắng */
+  border: 1px solid #555;
+  border-radius: 8px 0 0 8px;
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: #ccc; /* màu placeholder nhạt */
+}
+
+.search-button {
+  padding: 6px 10px;
+  background-color: rgb(255, 255, 255);   /* nền đen */
+  color: white;              /* biểu tượng trắng */
+  border: 1px solid #555;
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #dadada;    /* đậm hơn khi hover */
+}
