@@ -11,30 +11,10 @@ export default function ArticleDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-const updateViewCount = useCallback(async (articleSlug) => {
-  try {
-    await axiosClient.patch(`/articles/${articleSlug}/views`);
-    
-    // Cập nhật lại topPosts
-    setTopPosts(prevPosts => 
-      prevPosts.map(post => 
-        post.slug === articleSlug 
-          ? { ...post, views: (post.views || 0) + 1 } 
-          : post
-      )
-    );
-  } catch (err) {
-    console.error('Failed to update view count:', err);
-  }
-}, []);
-
   useEffect(() => {
-    if (article) {
-      updateViewCount(article.slug);
-    }
-  }, [article, updateViewCount]);
+    // Tăng views khi vào trang chi tiết
+    axiosClient.post(`/articles/${slug}/view`).catch(() => {});
 
-  useEffect(() => {
     const controller = new AbortController();
 
     const fetchData = async () => {
@@ -107,6 +87,29 @@ const updateViewCount = useCallback(async (articleSlug) => {
     fetchData();
     return () => controller.abort();
   }, [slug]);
+
+  const updateViewCount = useCallback(async (articleSlug) => {
+    try {
+      await axiosClient.patch(`/articles/${articleSlug}/views`);
+
+      // Cập nhật lại topPosts
+      setTopPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post.slug === articleSlug
+            ? { ...post, views: (post.views || 0) + 1 }
+            : post
+        )
+      );
+    } catch (err) {
+      console.error("Failed to update view count:", err);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (article) {
+      updateViewCount(article.slug);
+    }
+  }, [article, updateViewCount]);
 
   if (loading) {
     return (
@@ -214,7 +217,9 @@ const updateViewCount = useCallback(async (articleSlug) => {
                 <a href={`/article/${post.slug}`}>
                   <span className="rank">{index + 1}</span>
                   <span className="title">{post.title}</span>
-                  <span className="views">{post.views?.toLocaleString() || 0} views</span>
+                  <span className="views">
+                    {post.views?.toLocaleString() || 0} views
+                  </span>
                 </a>
               </li>
             ))}
