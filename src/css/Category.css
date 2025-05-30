@@ -1,0 +1,136 @@
+/* Shared */
+.whats-more, .skeleton-whats-more {
+  margin-top: 40px;
+  padding: 0 20px;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.whats-more > h1, .skeleton-whats-more > h1 {
+  grid-column: 1 / -1;
+  margin: 0 0 20px 0;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #222;
+  position: relative;
+  padding-bottom: 10px;
+  opacity: 0;
+  animation: slideDown 0.6s ease-out 0.3s forwards;
+}
+
+.whats-more > h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: #b30000;
+  transition: width 0.4s ease;
+}
+
+.whats-more > h1:hover::after {
+  width: 100px;
+}
+
+/* News block */
+.whats-more .news {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.whats-more .news img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.whats-more .news:hover img {
+  transform: scale(1.03);
+}
+
+.whats-more .news h3 {
+  margin: 15px 0 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #222;
+  transition: color 0.3s ease;
+}
+
+.whats-more .news:hover h3 {
+  color: #b30000;
+}
+
+/* Animation delay for each news */
+.whats-more .news:nth-child(n+2):nth-child(-n+6) {
+  animation-delay: calc(0.1s * (var(--i, 1)));
+}
+
+/* Skeleton */
+.skeleton-whats-more .news {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.skeleton-whats-more .news-img,
+.skeleton-whats-more .news-title,
+.skeleton-whats-more > h1 {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.skeleton-whats-more .news-img {
+  width: 100%;
+  height: 180px;
+}
+
+.skeleton-whats-more .news-title {
+  height: 20px;
+}
+
+.skeleton-whats-more .news-title:nth-child(2) { width: 90%; }
+.skeleton-whats-more .news-title:nth-child(3) { width: 70%; }
+
+/* Animations */
+@keyframes fadeInUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .whats-more, .skeleton-whats-more {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .whats-more, .skeleton-whats-more {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .whats-more, .skeleton-whats-more {
+    grid-template-columns: 1fr;
+  }
+}
