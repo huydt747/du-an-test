@@ -4,8 +4,26 @@ const db = require('./db'); // Kết nối cơ sở dữ liệu
 
 // API 1: Lấy danh sách tất cả bài viết
 router.get('/', (req, res) => {
-  const query = 'SELECT * FROM articles';
-  db.query(query, (err, results) => {
+  const limit = parseInt(req.query.limit) || null;
+  const sort = req.query.sort || 'id'; // Mặc định sort theo id
+  
+  // Validate sort column để tránh SQL injection
+  const validSortColumns = ['id', 'title', 'author', 'publication_date', 'views'];
+  const sortColumn = validSortColumns.includes(sort) ? sort : 'id';
+  
+  const sortOrder = req.query.order === 'asc' ? 'ASC' : 'DESC';
+  
+  let query = 'SELECT * FROM articles';
+  
+  if (sort) {
+    query += ` ORDER BY ${sortColumn} ${sortOrder}`;
+  }
+  
+  if (limit) {
+    query += ' LIMIT ?';
+  }
+  
+  db.query(query, limit ? [limit] : [], (err, results) => {
     if (err) {
       return res.status(500).json({ error: 'Lỗi khi lấy bài viết' });
     }
@@ -118,25 +136,46 @@ router.get('/latest/:limit', (req, res) => {
   });
 });
 
-// routes/articles.js
-router.patch('/:slug/views', async (req, res) => {
-  try {
-    const article = await Article.findOneAndUpdate(
-      { slug: req.params.slug },
-      { $inc: { views: 1 } },
-      { new: true }
-    );
-    res.json(article);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+// Sửa route này để match với frontend call
+router.patch('/:slug/views', (req, res) => {
+  const slug = req.params.slug;
+  
+  // Tăng views và trả về article với views mới
+  const updateQuery = 'UPDATE articles SET views = COALESCE(views, 0) + 1 WHERE slug = ?';
+  
+  db.query(updateQuery, [slug], (err, updateResult) => {
+    if (err) {
+      return res.status(500).json({ error: 'Lỗi khi cập nhật views' });
+    }
+    
+    if (updateResult.affectedRows === 0) {
+      return res.status(404).json({ error: 'Bài viết không tồn tại' });
+    }
+    
+    // Lấy article với views mới để trả về
+    const selectQuery = 'SELECT * FROM articles WHERE slug = ?';
+    db.query(selectQuery, [slug], (err, results) => {
+      if (err) {
+        return res.status(500).json({ error: 'Lỗi khi lấy thông tin bài viết' });
+      }
+      
+      res.json(results[0]);
+    });
+  });
 });
 
+// Giữ route POST để backward compatibility (nếu cần)
 router.post('/:slug/view', (req, res) => {
   const slug = req.params.slug;
-  const query = 'UPDATE articles SET views = views + 1 WHERE slug = ?';
+  const query = 'UPDATE articles SET views = COALESCE(views, 0) + 1 WHERE slug = ?';
+  
   db.query(query, [slug], (err, results) => {
     if (err) return res.status(500).json({ error: 'Lỗi khi cập nhật views' });
+    
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ error: 'Bài viết không tồn tại' });
+    }
+    
     res.json({ message: 'Đã tăng views' });
   });
 });

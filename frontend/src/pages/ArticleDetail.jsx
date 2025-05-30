@@ -12,10 +12,6 @@ export default function ArticleDetail() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axiosClient.post(`/articles/${slug}/view`).catch(() => {});
-  }, [slug]);
-
-  useEffect(() => {
     const controller = new AbortController();
 
     const fetchData = async () => {
@@ -67,7 +63,7 @@ export default function ArticleDetail() {
 
         // Top 10 articles
         const topRes = await axiosClient.get(
-          "/articles?limit=10&sort=-views,-createdAt",
+          "/articles?sort=views&order=desc&limit=10",
           { signal: controller.signal }
         );
         setTopPosts(
@@ -76,6 +72,10 @@ export default function ArticleDetail() {
             publication_date: post.publication_date,
           }))
         );
+
+        // Tăng view count sau khi load xong data
+        await updateViewCount(slug);
+        
       } catch (err) {
         if (!controller.signal.aborted) {
           setError(err.response?.data?.message || "Failed to load article");
@@ -90,23 +90,26 @@ export default function ArticleDetail() {
   }, [slug]);
 
   const updateViewCount = useCallback(async (articleSlug) => {
-    await axiosClient.patch(`/articles/${articleSlug}/views`);
-
-    // Cập nhật lại topPosts
-    setTopPosts((prevPosts) =>
-      prevPosts.map((post) =>
-        post.slug === articleSlug
-          ? { ...post, views: (post.views || 0) + 1 }
-          : post
-      )
-    );
-  }, []);
-
-  useEffect(() => {
-    if (article) {
-      updateViewCount(article.slug);
+    try {
+      const response = await axiosClient.patch(`/articles/${articleSlug}/views`);
+      
+      // Cập nhật article với views mới từ response
+      if (response.data) {
+        setArticle(prev => prev ? { ...prev, views: response.data.views } : prev);
+        
+        // Cập nhật lại topPosts nếu cần
+        setTopPosts((prevPosts) =>
+          prevPosts.map((post) =>
+            post.slug === articleSlug
+              ? { ...post, views: response.data.views }
+              : post
+          )
+        );
+      }
+    } catch (error) {
+      console.error('Error updating view count:', error);
     }
-  }, [article, updateViewCount]);
+  }, []);
 
   if (loading) {
     return (
@@ -147,6 +150,7 @@ export default function ArticleDetail() {
           <div className="article-meta">
             {article.author && <span>By {article.author}</span>}
             <span>{article.publication_date}</span>
+            {article.views && <span>{article.views.toLocaleString()} views</span>}
           </div>
           {article.image_url && (
             <figure className="article-image">
