@@ -36,20 +36,20 @@ function Footer() {
             </article>  
 
                
-                    <article class="footer-categories">
+                    <article className="footer-categories">
                         <form method="Titlr">
                             <h1>RELETED CATEGORIES</h1>
                         </form>
-                        <a href="/categories/us" class="category-link">US</a>
-                        <a href="/categories/world" class="category-link">WORLD</a>
-                        <a href="/categories/politics" class="category-link">POLITICS</a>
-                        <a href="/categories/business" class="category-link">BUSINESS</a>
-                        <a href="/categories/entertainment" class="category-link">ENTERTAINMENT</a>
-                        <a href="/categories/health" class="category-link">HEALTH</a>
-                        <a href="/categories/style" class="category-link">STYLE</a>
-                        <a href="/categories/travel" class="category-link">TRAVEL</a>
-                        <a href="/categories/sports" class="category-link">SPORTS</a>
-                        <a href="/categories/science" class="category-link">SCIENCE</a>
+                        <a href="/categories/us" className="category-link">US</a>
+                        <a href="/categories/world" className="category-link">WORLD</a>
+                        <a href="/categories/politics" className="category-link">POLITICS</a>
+                        <a href="/categories/business" className="category-link">BUSINESS</a>
+                        <a href="/categories/entertainment" className="category-link">ENTERTAINMENT</a>
+                        <a href="/categories/health" className="category-link">HEALTH</a>
+                        <a href="/categories/style" className="category-link">STYLE</a>
+                        <a href="/categories/travel" className="category-link">TRAVEL</a>
+                        <a href="/categories/sports" className="category-link">SPORTS</a>
+                        <a href="/categories/science" className="category-link">SCIENCE</a>
                      </article>
 
 

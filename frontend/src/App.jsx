@@ -17,6 +17,8 @@ function App() {
         <Route path="/categories/:slug" element={<Category />} />
         <Route path="/article/:slug" element={<ArticleDetail />} />
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="/admin/edit/:id" element={<AdminPage />} />  
+        <Route path="/admin/edit/:slug" element={<AdminPage />} />
       </Routes>
       <Footer/>
     </Router>
