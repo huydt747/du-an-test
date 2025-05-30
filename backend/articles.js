@@ -133,4 +133,13 @@ router.patch('/:slug/views', async (req, res) => {
   }
 });
 
+router.post('/:slug/view', (req, res) => {
+  const slug = req.params.slug;
+  const query = 'UPDATE articles SET views = views + 1 WHERE slug = ?';
+  db.query(query, [slug], (err, results) => {
+    if (err) return res.status(500).json({ error: 'Lỗi khi cập nhật views' });
+    res.json({ message: 'Đã tăng views' });
+  });
+});
+
 module.exports = router;

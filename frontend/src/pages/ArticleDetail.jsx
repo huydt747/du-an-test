@@ -12,9 +12,10 @@ export default function ArticleDetail() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Tăng views khi vào trang chi tiết
     axiosClient.post(`/articles/${slug}/view`).catch(() => {});
+  }, [slug]);
 
+  useEffect(() => {
     const controller = new AbortController();
 
     const fetchData = async () => {
@@ -89,20 +90,16 @@ export default function ArticleDetail() {
   }, [slug]);
 
   const updateViewCount = useCallback(async (articleSlug) => {
-    try {
-      await axiosClient.patch(`/articles/${articleSlug}/views`);
+    await axiosClient.patch(`/articles/${articleSlug}/views`);
 
-      // Cập nhật lại topPosts
-      setTopPosts((prevPosts) =>
-        prevPosts.map((post) =>
-          post.slug === articleSlug
-            ? { ...post, views: (post.views || 0) + 1 }
-            : post
-        )
-      );
-    } catch (err) {
-      console.error("Failed to update view count:", err);
-    }
+    // Cập nhật lại topPosts
+    setTopPosts((prevPosts) =>
+      prevPosts.map((post) =>
+        post.slug === articleSlug
+          ? { ...post, views: (post.views || 0) + 1 }
+          : post
+      )
+    );
   }, []);
 
   useEffect(() => {
